@@ -1,24 +1,24 @@
-FROM r-base:4.0.4
+FROM rstudio/plumber 
 MAINTAINER maj maj@email.com
 
 RUN useradd ruser \
 	&& mkdir /home/ruser \
-	&& chown ruser:ruser /home/ruser 
+    && chown ruser:ruser /home/ruser 
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-  libxml2-dev \
-  libcurl4-openssl-dev \
-  libfontconfig1-dev \
-  libssl-dev \
-  libsodium-dev  \
-  netcat && which nc
+#RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+#  libxml2-dev \
+#  libcurl4-openssl-dev \
+#  libfontconfig1-dev \
+#  libssl-dev \
+#  libsodium-dev  \
+#  netcat && which nc
 #  libharfbuzz-dev \
 #  libfribidi-dev
 
 # how to get specific versions?
-RUN R -e "install.packages('devtools',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('plumber',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('data.table', dependencies=TRUE, repos='http://cran.rstudio.com/')"
+#RUN R -e "install.packages('devtools',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+#RUN R -e "install.packages('plumber',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+#RUN R -e "install.packages('data.table', dependencies=TRUE, repos='http://cran.rstudio.com/')"
 
 # RUN R -e "devtools::install_github('maj-biostat/rctrandr')"
 COPY rctrandr_0.0.1.tar.gz /home/ruser/rctrandr_0.0.1.tar.gz
