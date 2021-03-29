@@ -21,7 +21,7 @@ REPOSITORY        TAG       IMAGE ID       CREATED          SIZE
 randr             latest    37e38ac1d232   16 minutes ago   1.05GB
 ```
 
-Create directory on local machine as permanent volume:
+Create directory on local machine as permanent volume for `sqlite3` DB:
 
 ```sh
 $ mkdir -p /data/randr/
