@@ -8,7 +8,7 @@ Containerised REST API proof of concept demo providing interface to R randomisat
 Built under unbuntu 20.04 using Docker version 20.10.5, build 55c4c88.
  
 Pre-requisites are `docker`. 
-If nececssary, see [Docker notes](https://github.com/maj-biostat/misc-notes/blob/master/docker.md).
+See [Docker notes](https://github.com/maj-biostat/misc-notes/blob/master/docker.md) if necessary.
 
 Clone repository to local directory and build.
 
@@ -40,7 +40,7 @@ Running swagger Docs at http://127.0.0.1:8000/__docs__/
 
 To test, open browser and navigate to swagger:
 
-![Swagger](https://github.com/adaptivehealthintelligence/randr/fig/swagger.png)
+![Swagger](https://github.com/adaptivehealthintelligence/randr/fig/swagger.png?raw=true "Swagger UI")
 
 Or `curl`
 
