@@ -37,7 +37,7 @@ Running swagger Docs at http://127.0.0.1:8000/__docs__/
 
 (or run in detached mode with `-d`).
 
-To test, open browser and navigate to swagger:
+To test, open browser and navigate to swagger using `localhost:8000/__docs__/` (last `/` is required).
 
 ![Swagger](swagger.png?raw=true "Swagger UI")
 
