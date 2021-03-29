@@ -40,7 +40,7 @@ Running swagger Docs at http://127.0.0.1:8000/__docs__/
 
 To test, open browser and navigate to swagger:
 
-![Swagger](https://github.com/adaptivehealthintelligence/randr/fig/swagger.png?raw=true "Swagger UI")
+![Swagger](swagger.png?raw=true "Swagger UI")
 
 Or `curl`
 
