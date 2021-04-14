@@ -9,42 +9,38 @@ Built under unbuntu 20.04 using Docker version 20.10.5, build 55c4c88.
 Pre-requisites are `docker` and git. 
 See [Docker notes](https://github.com/maj-biostat/misc-notes/blob/master/docker.md) if necessary.
 
-Clone repository to local directory and build:
+Clone repository to local directory
 
 ```sh
 $ git clone https://github.com/adaptivehealthintelligence/randr.git
-$ cd randr; pwd
-/home/user/randr
-$ docker build -t randr .
-$ docker images
-REPOSITORY        TAG       IMAGE ID       CREATED          SIZE
-randr             latest    37e38ac1d232   16 minutes ago   1.05GB
+$ cd randr
 ```
 
-Create directory on local machine as permanent volume for `sqlite3` DB:
+Define the model to be used in the tool.
+This is performed interactively in R by the `version.R` script into the `/data` directory.
+Alternatively, if running for first time can use
 
 ```sh
-$ mkdir -p /data/randr/
+$ cd R
+$ Rscript version.R
+$ cd ..
 ```
 
-Launch container:
+Build the container
 
 ```sh
-$ docker run -it -v /data/randr:/share -p 8000:8000 --rm randr
-Running plumber API at http://0.0.0.0:8000
-Running swagger Docs at http://127.0.0.1:8000/__docs__/
+$ docker-compose build
 ```
 
-(or run in detached mode with `-d`).
+Launch the container
 
-To test, open browser and navigate to swagger using `localhost:8000/__docs__/` (last `/` is required).
+```sh
+$ docker-compose up
+randr_1  | Running plumber API at http://0.0.0.0:8000
+randr_1  | Running swagger Docs at http://127.0.0.1:8000/__docs__/
+```
+
+and ctrl-clink on the link to open in browser and test endpoints.
 
 ![Swagger](swagger.png?raw=true "Swagger UI")
-
-Alternatively, use `curl` from the command line:
-
-```sh
-curl -X GET "http://127.0.0.1:8000/completerand?numbertrt=3&samplesize=6" -H "accept: application/json"
-```
-
 

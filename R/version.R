@@ -17,16 +17,16 @@ model <- MFITRandomModel$new(
 
 # Instead of this, would use a Docker volume which persists the model?
 # New model would require updating the volume?
+if(!dir.exists("../data")) dir.create("../data")
 if(!file.exists("../data/model.rds")) {
   saveRDS(model, "../data/model.rds")  
 } else {
-  response <- menu(c("Yes", "No"), title="Do you want to overwrite the model?")
+  response <- menu(c("Yes", "No"), title = "Do you want to overwrite the model?")
   if(response == 1) {
     saveRDS(model, "../data/model.rds") 
     cat("Model overwritten.\n")  
   } else {
     cat("Model not saved.\n")  
   }
-  
 }
 
