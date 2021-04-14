@@ -4,7 +4,7 @@ Containerised REST API proof of concept demo providing interface to R randomisat
 
 # Getting started
 
-Built under unbuntu 20.04 using Docker version 20.10.5, build 55c4c88.
+Built under unbuntu 20.04 using Docker version 20.10.6, build 370c289.
  
 Pre-requisites are `docker` and git. 
 See [Docker notes](https://github.com/maj-biostat/misc-notes/blob/master/docker.md) if necessary.
