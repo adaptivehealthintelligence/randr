@@ -87,7 +87,7 @@ MFITRandomModel <- R6::R6Class("MFITRandomModel",
       #     "length" = 4)),
       #   pretty = TRUE
       # )
-      par_desc <- toJSON(
+      par_desc <- 
         list(
           "pr_control" = list(
             "name" = "Target allocation to control",
@@ -114,9 +114,7 @@ MFITRandomModel <- R6::R6Class("MFITRandomModel",
             "descripion" = "The imbalance tolerance parameter for Mass-Weighted Urn Randomisation",
             "data_type" = "float",
             "length" = 1
-          )),
-        pretty = TRUE
-      )
+          ))
       return(par_desc)
     },
 

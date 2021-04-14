@@ -73,6 +73,16 @@ function() {
   model$rng_seed
 }
 
+#* @get /parameter_description
+function() {
+  model$get_parameter_descriptions()
+}
+
+#* @get /input_description
+function() {
+  model$get_parameter_input_descriptions()
+}
+
 
 
 # MARKS API TEST FUNCTIONS ------
