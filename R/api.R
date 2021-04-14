@@ -3,16 +3,80 @@ library("jsonlite")
 library("DBI")
 library("data.table")
 library("plumber")
+library("R6")
 
-#* log some
+#' @apiTitle Expose randomisation model for MFIT project
+#' @apiDescription This API generates random allocations from the MFIT randomisation design.
+#' 
+#' The model state is updated after each allocation.
+
+# Load the deployed randomisation model into the R session on start-up
+model <- readRDS("/share/model.rds")
+
+#* Log system time, request method and HTTP user agent of the incoming request
 #* @filter logging
 function(req){
   cat(as.character(Sys.time()), " ",
       req$REQEST_METHOD, req$PATH_INFO, "-",
       req$HTTP_USER_AGENT, "@", req$REMOTE_ADDR, "\n")
   # now forward the request for more processing
-  forward()
+  plumber::forward()
 }
+
+#* Generate a single allocation.
+#* This will always update the model state (seed, history, etc.).
+#* @serializer json
+#* @post /random_allocation
+function(input) {
+  tryCatch({
+    # Do any checks
+    
+    # Allocation
+    arm <- model$random_allocation()
+    # Update stored model state
+    saveRDS(model, "/share/model.rds")
+    return(arm)
+  }, error = function(e) {
+    return(list(error = e))
+  }, finally = {
+    message("Hit finally")
+  })
+}
+
+#* @get /name
+function() {
+  as.list(model$get_name())
+}
+
+#* @get /description
+function() {
+  as.list(model$get_description())
+}
+
+#* @get /version
+function() {
+  as.list(model$get_version())
+}
+
+#* @get /conditional_probability
+function() {
+  as.list(model$get_conditional_prob())
+}
+
+#* @get /history
+function() {
+  model$history
+}
+
+#* @get /rng_seed
+function() {
+  model$rng_seed
+}
+
+
+
+# MARKS API TEST FUNCTIONS ------
+
 
 #* log some
 #* @filter id
@@ -99,6 +163,7 @@ function(){
     message("Hit finally")
   })
 }
+
 
 
 # Boilerplate examples follow:
